@@ -1,0 +1,28 @@
+﻿# Python virtual environment
+backend/.venv/
+.venv/
+
+# Python cache
+backend/__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Database / vector store
+backend/chroma_data/
+backend/uploads/
+
+# Node
+frontend/node_modules/
+frontend/.next/
+node_modules/
+
+# Env files
+.env
+backend/.env
+frontend/.env.local
+frontend/.env
+
+# OS
+.DS_Store
+Thumbs.db

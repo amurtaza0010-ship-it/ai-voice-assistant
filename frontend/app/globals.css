@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050508;
+  --foreground: #f4f4f5;
+  --muted: #71717a;
+  --accent: #8b5cf6;
+  --accent-2: #22d3ee;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.35), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(34, 211, 238, 0.15), transparent),
+    radial-gradient(ellipse 50% 30% at 0% 100%, rgba(139, 92, 246, 0.12), transparent),
+    #050508;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}

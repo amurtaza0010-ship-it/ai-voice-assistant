@@ -1,6 +1,6 @@
 # VoiceAI — Production AI Voice Assistant SaaS
 
-Full-stack AI voice assistant platform with real-time voice, streaming chat, RAG knowledge base, agentic tool calling, analytics dashboard, and Docker deployment.
+Full-stack AI voice assistant platform with real-time voice, streaming chat, RAG knowledge base, agentic tool calling, local app launching, web search & news, analytics dashboard, and Docker deployment.
 
 ## Stack
 
@@ -68,6 +68,7 @@ backend/app/
   models/             # SQLAlchemy models
   services/           # AI, RAG, voice, analytics
   rag/                # (via services/rag_service)
+  tools/              # tool registry (time, calculator, app launcher, web search)
 frontend/
   app/                # Next.js App Router pages
   components/         # UI, chat, voice, layout
@@ -81,7 +82,9 @@ frontend/
 - **Chat** — SSE streaming, markdown, multi-session, search
 - **Voice** — push-to-talk, live transcription, streaming replies, TTS
 - **RAG** — PDF/DOCX/TXT upload, ChromaDB semantic retrieval
-- **Agents** — OpenRouter tool calling (time, calculator)
+- **Agents** — OpenRouter tool calling (time, calculator, local app launcher, web search & news)
+- **Local App Calling** — voice/chat command se system apps open karo (Calculator, Notepad, Browser, File Explorer, etc.)
+- **Web Search & News** — real-time web search aur latest news retrieval via agentic tool calling
 - **Dashboard** — usage stats and token estimates
 - **Admin** — list/delete documents and conversations (`is_admin` users)
 

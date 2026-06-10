@@ -4,7 +4,7 @@ from typing import Literal
 
 logger = logging.getLogger(__name__)
 
-IntentType = Literal["time", "search", "system", "chat"]
+IntentType = Literal["time", "search", "system", "close", "chat"]
 
 _TIME_RE = re.compile(
     r"\b("
@@ -42,6 +42,14 @@ _SYSTEM_RE = re.compile(
     re.IGNORECASE,
 )
 
+_CLOSE_RE = re.compile(
+    r"\b("
+    r"close|exit|quit|band\s*karo|band\s*kar|band\s*kado|"
+    r"bند\s*کرو|shut|kill|terminate"
+    r")\b",
+    re.IGNORECASE,
+)
+
 _APP_RE = re.compile(
     r"\b("
     r"notepad|calculator|chrome|edge|vs\s*code|vscode|"
@@ -75,8 +83,19 @@ def detect_intent(text: str, *, has_rag_context: bool = False) -> IntentType:
     if not cleaned:
         return "chat"
 
+    # Close intent — check before system so "close calculator" doesn't match "open"
+    if _CLOSE_RE.search(cleaned) and _APP_RE.search(cleaned):
+        intent: IntentType = "close"
+        logger.info(
+            "Intent detected: intent=%s query=%r rag_context=%s reason=close_command",
+            intent,
+            cleaned,
+            has_rag_context,
+        )
+        return intent
+
     if _SYSTEM_RE.search(cleaned) and _APP_RE.search(cleaned):
-        intent: IntentType = "system"
+        intent = "system"
         logger.info(
             "Intent detected: intent=%s query=%r rag_context=%s reason=system_command",
             intent,

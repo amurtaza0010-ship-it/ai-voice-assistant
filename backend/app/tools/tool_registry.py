@@ -11,6 +11,7 @@ STATUS_MESSAGES = {
     "time": "🕒 Checking time...",
     "search": "🔍 Searching web...",
     "system": "💻 Opening application...",
+    "close": "💻 Closing application...",
 }
 
 
@@ -25,6 +26,8 @@ async def run_tool(intent: str, user_message: str) -> str:
         return outcome.formatted
     if intent == "system":
         return system_tool.open_app(user_message)
+    if intent == "close":
+        return system_tool.close_app(user_message)
     raise ValueError(f"Unknown tool intent: {intent}")
 
 

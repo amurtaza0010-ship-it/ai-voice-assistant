@@ -14,7 +14,7 @@ import httpx
 logger = logging.getLogger(__name__)
 
 CACHE_TTL_SECONDS = 600
-_MAX_RETRIES = 3
+_MAX_RETRIES = 1
 _RATE_LIMIT_NOTICE = (
     "Search provider temporarily rate limited. Trying alternate source..."
 )
@@ -345,24 +345,25 @@ async def iter_search(
         yield {"type": "result", "outcome": cached}
         return
 
+    # RSS first — fast and reliable, DDG as fallback
     providers: list[tuple[str, Callable[[str, str], List[dict]], int]] = [
+        (
+            "rss-news",
+            lambda q, ua: _rss_news_search(q, ua)[:max_results],
+            0,
+        ),
         (
             "duckduckgo-auto",
             lambda q, ua: _ddg_text_search(
                 q, backend="auto", max_results=max_results, user_agent=ua
             ),
-            0,
+            4,
         ),
         (
             "duckduckgo-html",
             lambda q, ua: _ddg_text_search(
                 q, backend="html", max_results=max_results, user_agent=ua
             ),
-            4,
-        ),
-        (
-            "rss-news",
-            lambda q, ua: _rss_news_search(q, ua)[:max_results],
             8,
         ),
         (

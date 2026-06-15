@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv
+.git
+.env
+uploads
+chroma_data

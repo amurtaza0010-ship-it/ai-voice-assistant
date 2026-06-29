@@ -10,18 +10,18 @@ Full-stack AI voice assistant platform with real-time voice, streaming chat, RAG
 | Backend | FastAPI, SQLAlchemy, WebSockets, LangChain |
 | Database | PostgreSQL |
 | Vector DB | ChromaDB |
-| AI | OpenRouter (`openai/gpt-4o-mini` default) |
+| AI | Groq (`llama-3.1-8b-instant` default) |
 | Voice | Browser Speech API + optional OpenAI Whisper/TTS |
 
 ## Quick start (Docker)
 
-1. Copy environment file and add your OpenRouter key:
+1. Copy environment file and add your Groq key:
 
 ```bash
 cp .env.example .env
 ```
 
-2. Set `OPENROUTER_API_KEY` in `.env`.
+2. Set `GROQ_API_KEY` in `.env`.
 
 3. Build and run:
 
@@ -82,7 +82,7 @@ frontend/
 - **Chat** — SSE streaming, markdown, multi-session, search
 - **Voice** — push-to-talk, live transcription, streaming replies, TTS
 - **RAG** — PDF/DOCX/TXT upload, ChromaDB semantic retrieval
-- **Agents** — OpenRouter tool calling (time, calculator, local app launcher, web search & news)
+- **Agents** — Groq tool calling (time, calculator, local app launcher, web search & news)
 - **Local App Calling** — voice/chat command se system apps open karo (Calculator, Notepad, Browser, File Explorer, etc.)
 - **Web Search & News** — real-time web search aur latest news retrieval via agentic tool calling
 - **Dashboard** — usage stats and token estimates
